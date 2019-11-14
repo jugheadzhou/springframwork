@@ -25,10 +25,12 @@ import java.util.Date;
  **/
 @Configuration//标记这是一个spring配置类
 @ComponentScan(value = "com.jugheadzhou",includeFilters = {
-        //按注解扫描，扫描只包含@Repository与@Service注解的类
-        @ComponentScan.Filter(type = FilterType.ANNOTATION,classes = {Repository.class,Service.class}),
+        //按注解扫描，扫描只包含@Service注解的类
+        @ComponentScan.Filter(type = FilterType.ANNOTATION,classes = {Service.class}),
         //按指定类类型扫描
-        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,classes = {UserController.class})
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,classes = {UserController.class}),
+        //自定义规则匹配UserDao （com.jugheadzhou.config.MyTypeFilter）
+        @ComponentScan.Filter(type = FilterType.CUSTOM,classes = {MyTypeFilter.class})
 },useDefaultFilters = false
 )
 

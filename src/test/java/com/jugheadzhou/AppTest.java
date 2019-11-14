@@ -6,6 +6,7 @@ import com.jugheadzhou.common.entity.Score;
 import com.jugheadzhou.common.entity.User;
 import com.jugheadzhou.config.SpringConfig;
 import com.jugheadzhou.controller.UserController;
+import com.jugheadzhou.dao.UserDao;
 import com.jugheadzhou.server.UserService;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -56,6 +57,11 @@ public class AppTest {
         String[] beanDefinitionNames = annotationConfigApplicationContext.getBeanDefinitionNames();
 
         System.out.println("Spring容器扫描到的bean: \n"+Arrays.toString(beanDefinitionNames));
+
+
+        UserDao userDao = (UserDao) annotationConfigApplicationContext.getBean("userDao");
+        System.out.println(userDao.getUser());
+
         UserService userService = (UserService) annotationConfigApplicationContext.getBean("userServiceImpl");
         System.out.println(userService.getUser());
 
